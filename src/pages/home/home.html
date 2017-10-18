@@ -3,16 +3,61 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+  
+    <ion-title>Chuyến xe</ion-title>
+     
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
-
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+	
+<b>Hello {{userDetails.name}} | {{userDetails.balance}}</b>  
+	<ion-list>
+	
+    <ion-item *ngFor="let post of resposeData; let i=index" text-wrap (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
+	
+		<div class="job">
+			<h3>
+				<div class="header">
+					CX{{post.id}} | {{post.pick_up_time}} | {{post.fee}}
+				</div>
+				<div class="name">
+					{{post.title}}
+				</div>
+				
+			</h3>	
+			
+			<div *ngIf="isGroupShown(i)" >
+				<div class="pricing">
+					<ul>
+						<li><b>Phải thu của khách: </b>{{post.sale_price}}</li>
+						<li><b>Lái xe thực nhận: </b>{{post.fee}}</li>
+						<li><b>Phí của Ycar: </b>{{post.ycarfee}}</li>
+					</ul>	
+				</div>
+				<div class="note">
+					{{ post.flight_number != '' ? 'Mã chuyến bay: ' : '' }}{{ post.flight_number != '' ? post.flight_number : '' }}
+                    
+                    <div class="add_location">
+                        <div>{{ post.add_location == 1 ? 'Don/tra them khach tai:' : '' }} </div>
+                      
+                        <div>{{ post.address_1 ? ' - ':''}}{{ post.address_1 }} </div>
+                       <div> {{ post.address_2 ? ' - ':''}}{{ post.address_2 }} </div>
+                    </div>
+                    <div>
+                         {{post.comment}}
+                    </div>
+                   
+				</div>
+				<button ion-button full (click)="presentConfirm(post.id)" class="buy button-blue {{post.button}}">Mua chuyến</button>
+<div class="error">{{post.can_buy}}</div>
+				
+			</div>	
+			
+		</div>
+	
+    </ion-item>
+  </ion-list>
+    <br/>
+  <button style="padding: 5px 10px;" (click)="logout()" class="buy button-blue">Thoát</button>
 </ion-content>

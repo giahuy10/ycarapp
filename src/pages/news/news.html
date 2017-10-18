@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>  
+    <ion-title>Thông báo</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	
+
+	<ion-list>
+	
+	 
+      
+          
+      
+     
+	
+    <ion-item *ngFor="let post of resposeData; let i=index" text-wrap (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
+	
+		<div class="job">
+			<h2>
+				
+					{{post.title}}
+				
+				
+			</h2>	
+			
+			<div *ngIf="isGroupShown(i)" >
+				<div [innerHtml]="post.introtext"></div>
+			</div>	
+			
+		</div>
+	
+    </ion-item>
+  </ion-list>
+  
+</ion-content>

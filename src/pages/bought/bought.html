@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>  
+    <ion-title>Chuyến đã mua</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	
+
+	<ion-list>
+	
+	 
+      
+          
+      
+     
+	
+    <ion-item *ngFor="let post of resposeData; let i=index" text-wrap (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
+	
+		<div class="job">
+			<h3>
+				<div class="header">
+					CX{{post.id}} | {{post.pick_up_time}} | {{post.fee}}
+				</div>
+				<div class="name">
+					{{post.title}}
+				</div>
+				
+			</h3>	
+			
+			<div *ngIf="isGroupShown(i)" >
+				<div class="pricing">
+					<ul>
+						<li><b>Phải thu của khách: </b>{{post.sale_price}}</li>
+						<li><b>Lái xe thực nhận: </b>{{post.fee}}</li>
+						<li><b>Phí của Ycar: </b>{{post.ycarfee}}</li>
+					</ul>	
+				</div>
+				<div class="note">
+					{{ post.flight_number != '' ? 'Mã chuyến bay: ' : '' }}{{ post.flight_number != '' ? post.flight_number : '' }}
+				     <div class="add_location">
+                        <div>{{ post.add_location == 1 ? 'Don/tra them khach tai:' : '' }} </div>
+                      
+                        <div>{{ post.address_1 ? ' - ':''}}{{ post.address_1 }} </div>
+                       <div> {{ post.address_2 ? ' - ':''}}{{ post.address_2 }} </div>
+                    </div>
+                    {{post.comment}}
+                </div>
+				
+				<h4>Thông tin khách hàng</h4>
+				<ul>
+					<li><b>Tên khách hàng: </b>{{post.customer_name}}</li>
+					 <li> <button class="buy button-red"(click)="call(post.customer_phone)" >Goi khach hang </button></li>
+				</ul>
+				<button ion-button class=" buy button-blue" (click)="presentConfirm(post.id)">Đón khách</button>
+				<button ion-button class=" buy button-red" (click)="presentPrompt(post.id)">Hủy chuyến</button>
+                <div class="error">*{{post.take_client_text}}</div>
+			</div>	
+			
+		</div>
+	
+    </ion-item>
+  </ion-list>
+  
+</ion-content>

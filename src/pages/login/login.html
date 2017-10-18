@@ -1,0 +1,25 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Đăng nhập</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+
+<ion-list>
+
+  <ion-item>
+  
+    <ion-input type="number" value="" [(ngModel)]="userData.username" placeholder="Số điện thoại" autocomplete="off" ></ion-input>
+  </ion-item>
+
+  <ion-item>
+  
+    <ion-input type="password" [(ngModel)]="userData.password" placeholder="Mật khẩu" autocomplete="off" ></ion-input>
+  </ion-item>
+
+  <button ion-button block color="primary" class="button-blue" (click)="login()">Đăng nhập</button>
+
+</ion-list>
+</ion-content>

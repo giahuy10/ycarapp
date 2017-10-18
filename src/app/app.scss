@@ -1,5 +1,8 @@
 // http://ionicframework.com/docs/theming/
-
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+body, h1, h2, h3, h4, h5, p, a, button, td, tr, div, span {
+    font-family: 'Open Sans', sans-serif !important;
+}
 
 // App Global Sass
 // --------------------------------------------------
@@ -14,3 +17,48 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+ion-content.content {
+    background: #e5e5e5;
+}
+ion-item.item {
+    margin-bottom: 2px;
+    border-top: 5px solid #ee2437 !important;
+}
+ion-item ion-label {
+    overflow: initial !important;
+}
+.item-inner {
+    border-bottom: 0 !important;
+}
+ion-header .toolbar-background {
+    background: #24336C !important;
+}
+.disable.hidden {
+    display: none;
+}
+.error{
+    color:#ee2437;
+}
+ul {
+    padding-left: 5px;
+}
+li {
+    font-size: 14px;
+}
+.buy {
+    
+    color: #fff;
+    border-radius: 5px;
+  
+    font-size: 16px;
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 10px !important;
+    height: auto !important;
+}
+.button-blue {
+    background: #24336C;
+}
+.button-red {
+    background: #ee2437;
+}

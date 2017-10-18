@@ -1,0 +1,57 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Đăng ký làm tài xế YCar</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+
+<ion-list>
+
+  <ion-item>
+  
+    <ion-input type="number"  [(ngModel)]="userData.phone" placeholder="Số điện thoại" ng-required="true"></ion-input>
+  </ion-item>
+
+  <ion-item>
+ 
+    <ion-input type="text"  [(ngModel)]="userData.title" placeholder="Tên" ng-required="true"></ion-input>
+  </ion-item>
+
+  <ion-item>
+ 
+    <ion-input type="number"  [(ngModel)]="userData.id_card" placeholder="Chứng minh thư" ng-required="true"></ion-input>
+  </ion-item>
+   <ion-item>
+ 
+    <ion-input type="text"  [(ngModel)]="userData.car_type" placeholder="Tên xe" ng-required="true"></ion-input>
+  </ion-item>
+  <ion-item>
+ 
+    <ion-input type="text"  [(ngModel)]="userData.number_plates" placeholder="Biển số xe" ng-required="true"></ion-input>
+  </ion-item>
+  <ion-item>
+ 
+    <ion-input type="number"  [(ngModel)]="userData.number_seat" placeholder="Số chỗ" ng-required="true"></ion-input>
+  </ion-item>
+ 
+  <ion-item>
+ 
+    <ion-input type="number"  [(ngModel)]="userData.license" placeholder="Bằng lái xe" ng-required="true"></ion-input>
+  </ion-item>
+  <ion-item>
+ 
+    <ion-input type="text"  [(ngModel)]="userData.address" placeholder="Địa chỉ"></ion-input>
+  </ion-item>
+
+  <ion-item>
+   
+    <ion-input type="password" [(ngModel)]="userData.password" placeholder="Mật khẩu" ng-required="true"></ion-input>
+  </ion-item>
+
+  <button ion-button block color="primary" (click)="signup()">Đăng ký</button>
+  Đã có tài khoản?
+  <a href="#" (click)="login()">Đăng nhập</a>
+</ion-list>
+</ion-content>
