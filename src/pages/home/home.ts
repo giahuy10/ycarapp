@@ -3,7 +3,8 @@ import {NavController, App, AlertController,NavParams} from 'ionic-angular';
 import { OneSignal } from '@ionic-native/onesignal';
 import {AuthServiceProvider} from "../../providers/auth-service/auth-service";
 //import {Common} from "../../providers/common";
-//import {BoughtPage} from "../bought/bought";
+import {WelcomePage} from "../welcome/welcome";
+import {BoughtPage} from "../bought/bought";
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -13,6 +14,7 @@ shownGroup = null;
 public userDetails : any;
   public resposeData : any;
   bought_response: any = {};
+  blance_response: any = {};
   public dataSet : any;
   userPostData = {
     "user_id": "",
@@ -23,13 +25,15 @@ public userDetails : any;
 };
   constructor( private alertCtrl: AlertController,public navCtrl : NavController, public app : App, public authService : AuthServiceProvider, public navParams: NavParams,public one: OneSignal) {
   
-    //console.log(localStorage.getItem('userData'));
-	  //console.log('Hello ok ok AuthService Provider');
+  
+   
 		if (JSON.parse(localStorage.getItem('userData'))) {
         const data = JSON.parse(localStorage.getItem('userData'));
         this.userDetails = data.userData;
+         
         
-        
+  
+     
          this.one.getIds().then((ids) => {
             this.userDetails.player_id = ids.userId,
             
@@ -38,8 +42,10 @@ public userDetails : any;
 
 			}, (err) => {
 		  //Connection failed message
-		});
+		      });
             });
+            
+          
 		var temp = this;
       
 
@@ -55,19 +61,21 @@ public userDetails : any;
 
 		temp.authService.postData(temp.userPostData, "new").then((result) =>{
 				temp.resposeData = result;
-				//console.log(temp.resposeData);
-				if(temp.resposeData.userData){
-				 //localStorage.setItem('userData', JSON.stringify(temp.resposeData));
 				
-			  }
 
 			}, (err) => {
 		  //Connection failed message
 		});
+        temp.authService.postData(temp.userPostData, "balance").then((result) =>{
+				temp.blance_response = result;	  
+
+			}, (err) => {
+		  //Connection failed message
+		  });
 		
     }, 300);
     }
-  
+    
   }
   getjob(){
 	 const data = JSON.parse(localStorage.getItem('userData'));
@@ -88,17 +96,40 @@ public userDetails : any;
     });
 }
   logout() {
-  
-     this.authService.postData(this.userDetails, "removeplayerid").then((result) =>{
+    
+    const alert = this.alertCtrl.create({
+		title: 'Xác nhận hành động',
+		message: 'Bạn chắc chắn muốn thoát khỏi ứng dụng?',
+		buttons: [
+		  {
+			text: 'Không',
+			role: 'cancel',
+			handler: () => {
+			  console.log('Cancel clicked');
+			}
+		  },
+		  {
+			text: 'Thoát',
+			handler: () => {
+                 this.authService.postData(this.userDetails, "removeplayerid").then((result) =>{
 				
+                
 
-			}, (err) => {
-		  //Connection failed message
-		});
-  
-    //Api Token Logout
-    localStorage.clear();
-    setTimeout(() => this.backToWelcome(), 100);
+			     }, (err) => {
+                  //Connection failed message
+                });
+
+            //Api Token Logout
+            localStorage.clear();
+          this.app.getRootNav().setRoot(WelcomePage);
+			 
+			}
+		  }
+		]
+	  });
+	  alert.present();
+    
+    
 
 }
    backToWelcome() {
@@ -152,6 +183,7 @@ isGroupShown(group) {
 			 
 					this.authService.postData(this.userPostData, "buy_job").then((result) =>{
 						this.bought_response = result;
+                        console.log(this.bought_response);
 					if (this.bought_response.res_type == 1) {
 						this.presentAlert(this.bought_response.res_message);
 						//this.navCtrl.push(BoughtPage);

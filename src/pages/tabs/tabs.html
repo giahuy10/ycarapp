@@ -1,6 +1,9 @@
-<ion-tabs>
+<ion-tabs [selectedIndex]="mySelectedIndex" id="tabs">
   <ion-tab [root]="tab1Root" tabTitle="Chuyến xe" tabIcon="car"></ion-tab>
   <ion-tab [root]="tab2Root" tabTitle="Đã mua" tabIcon="cart"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="Hoàn thành" tabIcon="checkmark-circle"></ion-tab>
-   
+     <ion-tab [root]="tab3Root" tabTitle="Đã hoàn thành" tabIcon="checkmark-circle"></ion-tab>
+     <ion-tab [root]="tab4Root" tabTitle="Giao dịch" tabIcon="cash"></ion-tab>
+     <ion-tab [root]="tab5Root" tabTitle="Nạp tiền" tabIcon="contacts" show=false></ion-tab>
+     <ion-tab [root]="tab6Root" tabTitle="Thông báo" tabIcon="contacts" show=false></ion-tab>
+  <ion-tab [root]="tab7Root" tabTitle="Cài đặt" tabIcon="contacts" show=false></ion-tab >
 </ion-tabs>

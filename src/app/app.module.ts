@@ -28,6 +28,7 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     MyApp,
     HomePage,
     ListPage,
+    
     WelcomePage,
     LoginPage,
     SignupPage,
@@ -48,12 +49,13 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     MyApp,
     HomePage,
     ListPage,
-     WelcomePage,
+    WelcomePage,
     LoginPage,
     SignupPage,
     BoughtPage,
     CompletedPage,
     AccountPage,
+    
     FinancePage,
     NewsPage,
     TransactionPage,

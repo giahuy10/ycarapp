@@ -149,7 +149,7 @@ isGroupShown(group) {
 					
 					this.resposeData_detail = result;
 					console.log(result);
-					this.presentAlert(this.resposeData_detail.message)
+					this.presentAlert(this.resposeData_detail.res_message)
 					}, (err) => {
 					//Connection failed message
 					});

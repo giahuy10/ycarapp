@@ -22,7 +22,7 @@ ion-content.content {
 }
 ion-item.item {
     margin-bottom: 2px;
-    border-top: 5px solid #ee2437 !important;
+    border-top: 2px solid #ee2437 !important;
 }
 ion-item ion-label {
     overflow: initial !important;
@@ -61,4 +61,13 @@ li {
 }
 .button-red {
     background: #ee2437;
+}
+.red {
+    color: #ee2437;
+}
+.blue {
+    color: #24336C;
+}
+.green {
+    color:green;
 }

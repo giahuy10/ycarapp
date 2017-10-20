@@ -11,7 +11,7 @@
 
 <ion-content padding>
 	
-<b>Hello {{userDetails.name}} | {{userDetails.balance}}</b>  
+<b>Hello {{userDetails.name}} | {{blance_response.balance}}</b>   <a (click)="logout()"> <ion-icon name="log-out"></ion-icon> Thoát</a> <br/><br/>
 	<ion-list>
 	
     <ion-item *ngFor="let post of resposeData; let i=index" text-wrap (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
@@ -19,7 +19,7 @@
 		<div class="job">
 			<h3>
 				<div class="header">
-					CX{{post.id}} | {{post.pick_up_time}} | {{post.fee}}
+					CX{{post.id}} <span class="blue"><b>{{post.seats}}c</b></span> <span class="blue">{{post.pick_up_time}}</span> | <b><span class="red">{{post.fee}}</span></b>
 				</div>
 				<div class="name">
 					{{post.title}}
@@ -37,13 +37,14 @@
 				</div>
 				<div class="note">
 					{{ post.flight_number != '' ? 'Mã chuyến bay: ' : '' }}{{ post.flight_number != '' ? post.flight_number : '' }}
-                    
+                    <div *ngIf="post.add_location">
                     <div class="add_location">
-                        <div>{{ post.add_location == 1 ? 'Don/tra them khach tai:' : '' }} </div>
+                        <div>{{ post.add_location == 1 ? 'Đón/trả thêm khách tại:' : '' }} </div>
                       
-                        <div>{{ post.address_1 ? ' - ':''}}{{ post.address_1 }} </div>
-                       <div> {{ post.address_2 ? ' - ':''}}{{ post.address_2 }} </div>
+                        <div>{{post.add_location == 1 ? post.address_1:''}}</div>
+                       <div> {{post.add_location == 1  ? post.address_2:''}} </div>
                     </div>
+                    </div>    
                     <div>
                          {{post.comment}}
                     </div>
@@ -59,5 +60,5 @@
     </ion-item>
   </ion-list>
     <br/>
-  <button style="padding: 5px 10px;" (click)="logout()" class="buy button-blue">Thoát</button>
+
 </ion-content>

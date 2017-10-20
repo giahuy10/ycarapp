@@ -23,7 +23,7 @@
 		<div class="job">
 			<h3>
 				<div class="header">
-					CX{{post.id}} | {{post.pick_up_time}} | {{post.fee}}
+					CX{{post.id}} <span class="blue"><b>{{post.seats}}c</b></span> <span class="blue">{{post.pick_up_time}}</span> | <b><span class="red">{{post.fee}}</span></b>
 				</div>
 				<div class="name">
 					{{post.title}}
@@ -41,19 +41,21 @@
 				</div>
 				<div class="note">
 					{{ post.flight_number != '' ? 'Mã chuyến bay: ' : '' }}{{ post.flight_number != '' ? post.flight_number : '' }}
-				     <div class="add_location">
-                        <div>{{ post.add_location == 1 ? 'Don/tra them khach tai:' : '' }} </div>
+				     <div *ngIf="post.add_location">
+                    <div class="add_location">
+                        <div>{{ post.add_location == 1 ? 'Đón/trả thêm khách tại:' : '' }} </div>
                       
-                        <div>{{ post.address_1 ? ' - ':''}}{{ post.address_1 }} </div>
-                       <div> {{ post.address_2 ? ' - ':''}}{{ post.address_2 }} </div>
+                        <div>{{post.add_location == 1 ? post.address_1:''}}</div>
+                       <div> {{post.add_location == 1  ? post.address_2:''}} </div>
                     </div>
+                    </div>    
                     {{post.comment}}
                 </div>
 				
 				<h4>Thông tin khách hàng</h4>
 				<ul>
 					<li><b>Tên khách hàng: </b>{{post.customer_name}}</li>
-					 <li> <button class="buy button-red"(click)="call(post.customer_phone)" >Goi khach hang </button></li>
+					 <li> <button class="buy button-red"(click)="call(post.customer_phone)" >Gọi khách hàng</button></li>
 				</ul>
 				<button ion-button class=" buy button-blue" (click)="presentConfirm(post.id)">Đón khách</button>
 				<button ion-button class=" buy button-red" (click)="presentPrompt(post.id)">Hủy chuyến</button>
