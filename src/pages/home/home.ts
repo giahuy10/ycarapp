@@ -4,7 +4,7 @@ import { OneSignal } from '@ionic-native/onesignal';
 import {AuthServiceProvider} from "../../providers/auth-service/auth-service";
 //import {Common} from "../../providers/common";
 import {WelcomePage} from "../welcome/welcome";
-import {BoughtPage} from "../bought/bought";
+//import {BoughtPage} from "../bought/bought";
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -24,16 +24,9 @@ public userDetails : any;
    
 };
   constructor( private alertCtrl: AlertController,public navCtrl : NavController, public app : App, public authService : AuthServiceProvider, public navParams: NavParams,public one: OneSignal) {
-  
-  
-   
 		if (JSON.parse(localStorage.getItem('userData'))) {
         const data = JSON.parse(localStorage.getItem('userData'));
         this.userDetails = data.userData;
-         
-        
-  
-     
          this.one.getIds().then((ids) => {
             this.userDetails.player_id = ids.userId,
             
